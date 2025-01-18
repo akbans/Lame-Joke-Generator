@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lame Joke Generator by Akshit Bansal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: url('clown.gif') no-repeat left center, #222;
+            background-size: 1366px 766px, cover;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7); /* Translucent black background */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: right;
+            float: right;
+        }
+        button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+        .rating {
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+        .rating button {
+            margin: 0 5px;
+            font-size: 14px;
+        }
+        .joke {
+            margin: 20px 0;
+            font-size: 48px; /* Twice the original size */
+            font-weight: bold;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out; /* Joke animation */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Joke Generator</h1>
+        <div class="joke" id="joke">Click the button to see a joke!</div>
+        <button onclick="displayJoke()">Show Me a Joke</button>
+        <div class="rating" id="rating">
+            <p>Rate this joke:</p>
+            <button onclick="rateJoke(1)">👍</button>
+            <button onclick="rateJoke(0)">👎</button>
+        </div>
+    </div>
+
+    <script>
+        const jokes = [
+            "Why don't skeletons fight each other? They don't have the guts.",
+            "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+            "What do you call cheese that isn't yours? Nacho cheese.",
+            "Why did the scarecrow win an award? Because he was outstanding in his field!",
+            "I'm reading a book on anti-gravity. It's impossible to put down.",
+            "Why don't oysters give to charity? Because they are shellfish.",
+            "I used to play piano by ear, but now I use my hands.",
+            "Why don't eggs tell jokes? They might crack up.",
+            "What does a cloud wear under its clothes? Thunderwear.",
+            "Why did the golfer bring two pairs of pants? In case he got a hole in one.",
+            "How does a penguin build its house? Igloos it together.",
+            "Why are frogs so happy? They eat whatever bugs them.",
+            "Why did the bicycle fall over? It was two-tired.",
+            "Why don’t some couples go to the gym? Because some relationships don’t work out.",
+            "I’m on a seafood diet. I see food and I eat it.",
+            "Why don’t programmers like nature? It has too many bugs.",
+            "How do you organize a space party? You planet.",
+            "What do you call fake spaghetti? An impasta.",
+            "Why was the math book sad? It had too many problems.",
+            "Why couldn’t the leopard play hide and seek? Because he was always spotted."
+        ];
+
+        function displayJoke() {
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            const jokeElement = document.getElementById("joke");
+            jokeElement.textContent = randomJoke;
+            jokeElement.style.animation = "none"; // Reset animation
+            void jokeElement.offsetWidth; // Trigger reflow
+            jokeElement.style.animation = "fadeIn 1s ease-in-out"; // Apply animation
+
+            const ratingElement = document.getElementById("rating");
+            ratingElement.style.display = "block"; // Show the rating section
+        }
+
+        function rateJoke(rating) {
+            alert(rating === 1 ? "Thanks for the thumbs up!" : "We'll try to do better next time!");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
